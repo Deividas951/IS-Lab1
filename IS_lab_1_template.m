@@ -209,3 +209,7 @@ e5 = T(5) - y5;
 	e = abs(e1) + abs(e2) + abs(e3) + abs(e4) + abs(e5);
     cycleCount = cycleCount + 1;
 end
+
+%%Naive Bayes classificator.
+
+
