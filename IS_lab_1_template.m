@@ -79,33 +79,56 @@ w2 = randn(1);
 b = randn(1);
 
 % calculate weighted sum with randomly generated parameters
-%v1 = <...>; % write your code here
+v1 = x1(1)*w1 + x2(1)*w2 + b; %v1 = <...>; % write your code here
 % calculate current output of the perceptron 
 if v1 > 0
-	y = 1;
+	y1 = 1;
 else
-	y = -1;
+	y1 = -1;
 end
 % calculate the error
-e1 = T(1) - y;
+e1 = T(1) - y1;
 
 % repeat the same for the rest 4 inputs x1 and x2
 % calculate wieghted sum with randomly generated parameters
-% v2 = <...> ; % write your code here
+v2 = x1(2)*w1 + x2(2)*w2 + b % v2 = <...> ; % write your code here
 % calculate current output of the perceptron 
 if v2 > 0
-	y = 1;
+	y2 = 1;
 else
-	y = -1;
+	y2 = -1;
 end
 % calculate the error
-e2 = T(2) - y;
-
-% <...> write the code for another 3 inputs
-
+e2 = T(2) - y2;
+%--------------------------------------------------------------------------
+v3 = x1(3)*w1 + x2(3)*w2 + b % <...> write the code for another 3 inputs
+if v3 > 0
+	y3 = 1;
+else
+	y3 = -1;
+end
+e3 = T(3) - y3;
+%--------------------------------------------------------------------------
+v4 = x1(4)*w1 + x2(4)*w2 + b % <...> write the code for another 3 inputs
+if v4 > 0
+	y4 = 1;
+else
+	y4 = -1;
+end
+e4 = T(4) - y4;
+%--------------------------------------------------------------------------
+v5 = x1(5)*w1 + x2(5)*w2 + b % <...> write the code for another 3 inputs
+if v5 > 0
+	y5 = 1;
+else
+	y5 = -1;
+end
+e5 = T(5) - y5;
+%--------------------------------------------------------------------------
 % calculate the total error for these 5 inputs 
 e = abs(e1) + abs(e2) + abs(e3) + abs(e4) + abs(e5);
-
+g = 0.1;
+cycleCount = 1;
 % write training algorithm
 while e ~= 0 % executes while the total error is not 0
 	% here should be your code of parameter update
@@ -114,9 +137,25 @@ while e ~= 0 % executes while the total error is not 0
 %   calculate error for current example
 % 
 %   update parameters using current inputs ant current error
-% 	w1 = 
-%   w2 = 
-%   b = 
+w1 = w1 + g*e1*x1(1);   % 	w1 = 
+w2 = w2 + g*e1*x2(1);   %   w2 = 
+b  = b  + g*e1;         %   b = 
+%--------------------------------------------------------------------------
+w1 = w1 + g*e2*x1(2);   
+w2 = w2 + g*e2*x2(2);   
+b  = b  + g*e2;    
+%--------------------------------------------------------------------------
+w1 = w1 + g*e3*x1(3);   
+w2 = w2 + g*e3*x2(3);   
+b  = b  + g*e3;   
+%--------------------------------------------------------------------------
+w1 = w1 + g*e4*x1(4);   
+w2 = w2 + g*e4*x2(4);   
+b  = b  + g*e4;   
+%--------------------------------------------------------------------------
+w1 = w1 + g*e5*x1(5);   
+w2 = w2 + g*e5*x2(5);   
+b  = b  + g*e5;   
 % 
 %   Test how good are updated parameters (weights) on all examples used for training
 %   calculate outputs and errors for all 5 examples using current values of the parameter set {w1, w2, b}
@@ -125,7 +164,48 @@ while e ~= 0 % executes while the total error is not 0
 %   calculate 'y1', ..., 'y5'
 %     
 %   calculate 'e1', ... 'e5'
-    
+
+v1 = x1(1)*w1 + x2(1)*w2 + b;
+if v1 > 0
+	y1 = 1;
+else
+	y1 = -1;
+end
+e1 = T(1) - y1;
+%--------------------------------------------------------------------------
+v2 = x1(2)*w1 + x2(2)*w2 + b;
+if v2 > 0
+	y2 = 1;
+else
+	y2 = -1;
+end
+e2 = T(2) - y2;
+%--------------------------------------------------------------------------
+v3 = x1(3)*w1 + x2(3)*w2 + b;
+if v3 > 0
+	y3 = 1;
+else
+	y3 = -1;
+end
+e3 = T(3) - y3;
+%--------------------------------------------------------------------------
+v4 = x1(4)*w1 + x2(4)*w2 + b;
+if v4 > 0
+	y4 = 1;
+else
+	y4 = -1;
+end
+e4 = T(4) - y4;
+%--------------------------------------------------------------------------
+v5 = x1(5)*w1 + x2(5)*w2 + b;
+if v5 > 0
+	y5 = 1;
+else
+	y5 = -1;
+end
+e5 = T(5) - y5;
+%--------------------------------------------------------------------------   
 	% calculate the total error for these 5 inputs 
 	e = abs(e1) + abs(e2) + abs(e3) + abs(e4) + abs(e5);
+    cycleCount = cycleCount + 1;
 end
