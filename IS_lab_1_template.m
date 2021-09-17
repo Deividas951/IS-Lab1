@@ -139,23 +139,23 @@ while e ~= 0 % executes while the total error is not 0
 %   update parameters using current inputs ant current error
 w1 = w1 + g*e1*x1(1);   % 	w1 = 
 w2 = w2 + g*e1*x2(1);   %   w2 = 
-b  = b  + g*e1;         %   b = 
+b  = b  + g*e1*1;         %   b = 
 %--------------------------------------------------------------------------
 w1 = w1 + g*e2*x1(2);   
 w2 = w2 + g*e2*x2(2);   
-b  = b  + g*e2;    
+b  = b  + g*e2*1;    
 %--------------------------------------------------------------------------
 w1 = w1 + g*e3*x1(3);   
 w2 = w2 + g*e3*x2(3);   
-b  = b  + g*e3;   
+b  = b  + g*e3*1;   
 %--------------------------------------------------------------------------
 w1 = w1 + g*e4*x1(4);   
 w2 = w2 + g*e4*x2(4);   
-b  = b  + g*e4;   
+b  = b  + g*e4*1;   
 %--------------------------------------------------------------------------
 w1 = w1 + g*e5*x1(5);   
 w2 = w2 + g*e5*x2(5);   
-b  = b  + g*e5;   
+b  = b  + g*e5*1;   
 % 
 %   Test how good are updated parameters (weights) on all examples used for training
 %   calculate outputs and errors for all 5 examples using current values of the parameter set {w1, w2, b}
