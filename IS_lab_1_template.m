@@ -220,15 +220,45 @@ end
 %1 - OvalShape
 %2 - PearShape
 
-
-x1=[1 2 3 2 4]; %Colour vector
-x2=[1 1 1 2 2]; %Size vector
+x1=[1 2 3 2 4]; %Colour vector [1 2 3 2 4]
+x2=[1 1 1 2 2]; %Size vector [1 1 1 2 2]
+%x1=[{'Yellow' 'Yellow' 'DarkRedYellow' 'Yellow' 'Green'}]; %Colour vector
+%x2=[{'OvalShape' 'OvalShape' 'OvalShape' 'PearShape' 'PearShape'}]; %Size vector
+%T = [{'Apple' 'Apple' 'Apple' 'PearShape' 'PearShape'}];
 Target=[1,1,1,0,0]; %Target - 1:Apple, 0:Pear
+%Table = [x1; x2; Target]';
 AppleCount = 3; %Apple count in training data
 PearCount = 2; %Pear count in training data
 
-v1Apple = (1/AppleCount)*(3/AppleCount);
-v1Pear = (0/PearCount)*(0/PearCount);
+%x1x2 Apple
+x1a1 = 0;
+for ind = 1:5
+    if Target(ind) == 1 && x1(ind) == x1(1)
+        x1a1 = x1a1+1;
+    end
+end
+x2a1 = 0;
+for ind = 1:5
+    if Target(ind) == 1 && x2(ind) == x2(1)
+        x2a1 = x2a1+1;
+    end
+end
+%x1x2 Pear
+x1p1 = 0;
+for ind = 1:5
+    if Target(ind) == 0 && x1(ind) == x1(1)
+        x1p1 = x1p1+1;
+    end
+end
+x2p1 = 0;
+for ind = 1:5
+    if Target(ind) == 0 && x2(ind) == x2(1)
+        x2p1 = x2p1+1;
+    end
+end
+
+v1Apple = (x1a1/AppleCount)*(x2a1/AppleCount);
+v1Pear = (x1p1/PearCount)*(x2p1/PearCount);
 
 if v1Apple > v1Pear
     y1 = 1
@@ -237,9 +267,38 @@ else
 end
 
 %--------------------------------------------------------------------------
+%x1x2 Apple
+x1a2 = 0;
+for ind = 1:5
+    if Target(ind) == 1 && x1(ind) == x1(2)
+        x1a2 = x1a2+1;
+    end
+end
+x2a2 = 0;
+for ind = 1:5
+    if Target(ind) == 1 && x2(ind) == x2(2)
+        x2a2 = x2a2+1;
+    end
+end
+%x1x2 Pear
+x1p2 = 0;
+for ind = 1:5
+    if Target(ind) == 0 && x1(ind) == x1(2)
+        x1p2 = x1p2+1;
+    end
+end
+x2p2 = 0;
+for ind = 1:5
+    if Target(ind) == 0 && x2(ind) == x2(2)
+        x2p2 = x2p2+1;
+    end
+end
 
-v2Apple = (1/AppleCount)*(3/AppleCount);
-v2Pear = (1/PearCount)*(0/PearCount);
+%--------------------------------------------------------------------------
+
+
+v2Apple = (x1a2/AppleCount)*(x2a2/AppleCount);
+v2Pear = (x1p2/PearCount)*(x2p2/PearCount);
 
 if v2Apple > v2Pear
     y2 = 1
@@ -248,9 +307,34 @@ else
 end
 
 %--------------------------------------------------------------------------
-
-v3Apple = (1/AppleCount)*(3/AppleCount);
-v3Pear = (0/PearCount)*(0/PearCount);
+%x1x2 Apple
+x1a3 = 0;
+for ind = 1:5
+    if Target(ind) == 1 && x1(ind) == x1(3)
+        x1a3 = x1a3+1;
+    end
+end
+x2a3 = 0;
+for ind = 1:5
+    if Target(ind) == 1 && x2(ind) == x2(3)
+        x2a3 = x2a3+1;
+    end
+end
+%x1x2 Pear
+x1p3 = 0;
+for ind = 1:5
+    if Target(ind) == 0 && x1(ind) == x1(3)
+        x1p3 = x1p3+1;
+    end
+end
+x2p3 = 0;
+for ind = 1:5
+    if Target(ind) == 0 && x2(ind) == x2(3)
+        x2p3 = x2p3+1;
+    end
+end
+v3Apple = (x1a3/AppleCount)*(x2a3/AppleCount);
+v3Pear = (x1p3/PearCount)*(x2p3/PearCount);
 
 if v3Apple > v3Pear
     y3 = 1
@@ -258,9 +342,36 @@ else
     y3 = 0
 end
 %--------------------------------------------------------------------------
+%x1x2 Apple
+x1a4 = 0;
+for ind = 1:5
+    if Target(ind) == 1 && x1(ind) == x1(4)
+        x1a4 = x1a4+1;
+    end
+end
+x2a4 = 0;
+for ind = 1:5
+    if Target(ind) == 1 && x2(ind) == x2(4)
+        x2a4 = x2a4+1;
+    end
+end
+%x1x2 Pear
+x1p4 = 0;
+for ind = 1:5
+    if Target(ind) == 0 && x1(ind) == x1(4)
+        x1p4 = x1p4+1;
+    end
+end
+x2p4 = 0;
+for ind = 1:5
+    if Target(ind) == 0 && x2(ind) == x2(4)
+        x2p4 = x2p4+1;
+    end
+end
 
-v4Apple = (1/AppleCount)*(0/AppleCount);
-v4Pear = (1/PearCount)*(2/PearCount);
+
+v4Apple = (x1a4/AppleCount)*(x2a4/AppleCount);
+v4Pear = (x1p4/PearCount)*(x2p4/PearCount);
 
 if v4Apple > v4Pear
     y4 = 1
@@ -268,9 +379,35 @@ else
     y4 = 0
 end
 %--------------------------------------------------------------------------
+%x1x2 Apple
+x1a5 = 0;
+for ind = 1:5
+    if Target(ind) == 1 && x1(ind) == x1(5)
+        x1a5 = x1a5+1;
+    end
+end
+x2a5 = 0;
+for ind = 1:5
+    if Target(ind) == 1 && x2(ind) == x2(5)
+        x2a5 = x2a5+1;
+    end
+end
+%x1x2 Pear
+x1p5 = 0;
+for ind = 1:5
+    if Target(ind) == 0 && x1(ind) == x1(5)
+        x1p5 = x1p5+1;
+    end
+end
+x2p5 = 0;
+for ind = 1:5
+    if Target(ind) == 0 && x2(ind) == x2(5)
+        x2p5 = x2p5+1;
+    end
+end
 
-v5Apple = (0/AppleCount)*(0/AppleCount);
-v5Pear = (1/PearCount)*(1/PearCount);
+v5Apple = (x1a5/AppleCount)*(x2a5/AppleCount);
+v5Pear = (x1p5/PearCount)*(x2p5/PearCount);
 
 if v5Apple > v5Pear
     y5 = 1
