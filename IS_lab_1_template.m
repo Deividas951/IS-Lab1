@@ -221,17 +221,62 @@ end
 %2 - PearShape
 
 
-x1Colour[1; 2; 3; 2; 4];
-x2Size[1; 1; 1; 2; 2];
+x1=[1 2 3 2 4]; %Colour vector
+x2=[1 1 1 2 2]; %Size vector
+Target=[1,1,1,0,0]; %Target - 1:Apple, 0:Pear
+AppleCount = 3; %Apple count in training data
+PearCount = 2; %Pear count in training data
 
+v1Apple = (1/AppleCount)*(3/AppleCount);
+v1Pear = (0/PearCount)*(0/PearCount);
 
+if v1Apple > v1Pear
+    y1 = 1
+else
+    y1 = 0
+end
 
+%--------------------------------------------------------------------------
 
-AppleCount = 3;
-PearCount = 2;
+v2Apple = (1/AppleCount)*(3/AppleCount);
+v2Pear = (1/PearCount)*(0/PearCount);
 
+if v2Apple > v2Pear
+    y2 = 1
+else
+    y2 = 0
+end
 
+%--------------------------------------------------------------------------
 
+v3Apple = (1/AppleCount)*(3/AppleCount);
+v3Pear = (0/PearCount)*(0/PearCount);
+
+if v3Apple > v3Pear
+    y3 = 1
+else
+    y3 = 0
+end
+%--------------------------------------------------------------------------
+
+v4Apple = (1/AppleCount)*(0/AppleCount);
+v4Pear = (1/PearCount)*(2/PearCount);
+
+if v4Apple > v4Pear
+    y4 = 1
+else
+    y4 = 0
+end
+%--------------------------------------------------------------------------
+
+v5Apple = (0/AppleCount)*(0/AppleCount);
+v5Pear = (1/PearCount)*(1/PearCount);
+
+if v5Apple > v5Pear
+    y5 = 1
+else
+    y5 = 0
+end
 
 
 
