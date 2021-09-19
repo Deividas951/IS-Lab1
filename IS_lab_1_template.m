@@ -211,26 +211,26 @@ e5 = T(5) - y5;
 end
 
 %% Naive Bayes classificator.
-% 1 IS Apple, -1 IS Pear
-% x1 - colour, x2 - roundness
-% Possible outcomes:
-% x1(1) AND x2(1) = 1
-% x1(2) AND x2(2) = 1
-% x1(3) AND x2(3) = 1
-% x1(4) AND x2(4) = -1
-% x1(5) AND x2(5) = -1
-% A1 - red/yellow, 0.8188
-% A2 - Yellow, 0.8354
-% A3 - red/yellow, 0.8111
-% P1 - yellow/greensih, 0.7710
-% P2 - Green, 0.6279
-% Class probability - Apple = 0.6, Pear = 0.4
-% E - 5 (Since only 5 training samples)
-%
-% size > x2(1) AND x1(1) red/yellow = Apple
-% size > x2(2) AND x1(2) yellow = Apple
-% size > x2(3) AND x1(3) red/yellow = Apple
-%
+%COLOURS
+%1 - RedYellow
+%2 - Yellow
+%3 - DarkRed/Yellow
+%4 - Green
+%SIZES
+%1 - OvalShape
+%2 - PearShape
+
+
+x1Colour[1; 2; 3; 2; 4];
+x2Size[1; 1; 1; 2; 2];
+
+
+
+
+AppleCount = 3;
+PearCount = 2;
+
+
 
 
 
