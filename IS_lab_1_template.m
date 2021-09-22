@@ -67,8 +67,8 @@ x1=[hsv_value_A1 hsv_value_A2 hsv_value_A3 hsv_value_P1 hsv_value_P2];
 x2=[metric_A1 metric_A2 metric_A3 metric_P1 metric_P2];
 % estimated features are stored in matrix P:
 P=[x1;x2];
-xt1=[hsv_value_A4 hsv_value_A6 hsv_value_A7 hsv_value_A8 hsv_value_A9 hsv_value_P3 hsv_value_P4];
-xt2=[metric_A4 metric_A6 metric_A7 metric_A8 metric_A9 metric_P3 metric_P4];
+xt1=[metric_A4 metric_A5 hsv_value_A6 hsv_value_A7 hsv_value_A8 hsv_value_A9 hsv_value_P3 hsv_value_P4];
+xt2=[metric_A4 metric_A5 metric_A6 metric_A7 metric_A8 metric_A9 metric_P3 metric_P4];
 
 %Desired output vector
 T=[1;1;1;-1;-1]; % <- ČIA ANKSČIAU BUVO KLAIDA!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -214,10 +214,6 @@ end
 
 %% Testing----------------------------------------------------------------------
 % Testing data
-%xt1 = [hsv_value_A4 hsv_value_A5 hsv_value_A6 hsv_value_A7 hsv_value_A8 hsv_value_A9 hsv_value_P3 hsv_value_P4];
-%xt2 = [metric_A4 metric_A5 metric_A6 metric_A7 metric_A8 metric_A9 metric_P3 metric_P4];
-
-
 
 vt1 = xt1(1)*w1 + xt2(1)*w2 + b;
 if vt1 > 0
@@ -274,6 +270,15 @@ else
 	yt7 = -1;
 end
 et7 = T(1) - yt7;
+%--------------------------------------------------------------------------
+vt8 = xt1(8)*w1 + xt2(8)*w2 + b;
+if vt8 > 0
+	yt8 = 1;
+else
+	yt8 = -1;
+end
+et8 = T(1) - yt8;
+
 
 
 %% Naive Bayes classificator.
@@ -288,13 +293,12 @@ et7 = T(1) - yt7;
 
 x1=[1 2 3 2 4]; %Colour vector [1 2 3 2 4]
 x2=[1 1 1 2 2]; %Size vector [1 1 1 2 2]
-%x1=[{'Yellow' 'Yellow' 'DarkRedYellow' 'Yellow' 'Green'}]; %Colour vector
-%x2=[{'OvalShape' 'OvalShape' 'OvalShape' 'PearShape' 'PearShape'}]; %Size vector
-%T = [{'Apple' 'Apple' 'Apple' 'PearShape' 'PearShape'}];
 Target=[1,1,1,0,0]; %Target - 1:Apple, 0:Pear
-%Table = [x1; x2; Target]';
 AppleCount = 3; %Apple count in training data
 PearCount = 2; %Pear count in training data
+
+xb1=[hsv_value_A4 hsv_value_A6 hsv_value_A7 hsv_value_A8 hsv_value_A9 hsv_value_P3 hsv_value_P4];
+xb2=[metric_A4 metric_A6 metric_A7 metric_A8 metric_A9 metric_P3 metric_P4];
 
 %x1x2 Apple
 x1a1 = 0;
@@ -480,6 +484,5 @@ if v5Apple > v5Pear
 else
     y5 = 0
 end
-
 
 
