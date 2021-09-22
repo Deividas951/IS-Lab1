@@ -67,6 +67,8 @@ x1=[hsv_value_A1 hsv_value_A2 hsv_value_A3 hsv_value_P1 hsv_value_P2];
 x2=[metric_A1 metric_A2 metric_A3 metric_P1 metric_P2];
 % estimated features are stored in matrix P:
 P=[x1;x2];
+xt1=[hsv_value_A4 hsv_value_A6 hsv_value_A7 hsv_value_A8 hsv_value_A9 hsv_value_P3 hsv_value_P4];
+xt2=[metric_A4 metric_A6 metric_A7 metric_A8 metric_A9 metric_P3 metric_P4];
 
 %Desired output vector
 T=[1;1;1;-1;-1]; % <- ČIA ANKSČIAU BUVO KLAIDA!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -209,6 +211,70 @@ e5 = T(5) - y5;
 	e = abs(e1) + abs(e2) + abs(e3) + abs(e4) + abs(e5);
     cycleCount = cycleCount + 1;
 end
+
+%% Testing----------------------------------------------------------------------
+% Testing data
+%xt1 = [hsv_value_A4 hsv_value_A5 hsv_value_A6 hsv_value_A7 hsv_value_A8 hsv_value_A9 hsv_value_P3 hsv_value_P4];
+%xt2 = [metric_A4 metric_A5 metric_A6 metric_A7 metric_A8 metric_A9 metric_P3 metric_P4];
+
+
+
+vt1 = xt1(1)*w1 + xt2(1)*w2 + b;
+if vt1 > 0
+	yt1 = 1;
+else
+	yt1 = -1;
+end
+et1 = T(1) - yt1;
+%--------------------------------------------------------------------------
+vt2 = xt1(2)*w1 + xt2(2)*w2 + b;
+if vt2 > 0
+	yt2 = 1;
+else
+	yt2 = -1;
+end
+et2 = T(1) - yt2;
+%--------------------------------------------------------------------------
+vt3 = xt1(3)*w1 + xt2(3)*w2 + b;
+if vt3 > 0
+	yt3 = 1;
+else
+	yt3 = -1;
+end
+et3 = T(1) - yt3;
+%--------------------------------------------------------------------------
+vt4 = xt1(4)*w1 + xt2(4)*w2 + b;
+if vt4 > 0
+	yt4 = 1;
+else
+	yt4 = -1;
+end
+et4 = T(1) - yt4;
+%--------------------------------------------------------------------------
+vt5 = xt1(5)*w1 + xt2(5)*w2 + b;
+if vt5 > 0
+	yt5 = 1;
+else
+	yt5 = -1;
+end
+et5 = T(1) - yt5;
+%--------------------------------------------------------------------------
+vt6 = xt1(6)*w1 + xt2(6)*w2 + b;
+if vt6 > 0
+	yt6 = 1;
+else
+	yt6 = -1;
+end
+et6 = T(1) - yt6;
+%--------------------------------------------------------------------------
+vt7 = xt1(7)*w1 + xt2(7)*w2 + b;
+if vt7 > 0
+	yt7 = 1;
+else
+	yt7 = -1;
+end
+et7 = T(1) - yt7;
+
 
 %% Naive Bayes classificator.
 %COLOURS
