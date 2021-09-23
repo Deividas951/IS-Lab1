@@ -31,7 +31,8 @@ metric_A3=apvalumas_roundness(A3); %roundness
 % 4th apple image(A4)
 hsv_value_A4=spalva_color(A4); %color
 metric_A4=apvalumas_roundness(A4); %roundness
-% 5th apple image(A5)hsv_value_A5=spalva_color(A5); %color
+% 5th apple image(A5)
+hsv_value_A5=spalva_color(A5); %color
 metric_A5=apvalumas_roundness(A5); %roundness
 % 6th apple image(A6)
 hsv_value_A6=spalva_color(A6); %color
@@ -281,47 +282,52 @@ et8 = T(1) - yt8;
 
 
 
-%% Naive Bayes classificator.
+%% Naive Bayes classificator
+
+%Categories
+
 %COLOURS
-%1 - RedYellow
-%2 - Yellow
-%3 - DarkRed/Yellow
-%4 - Green
+%YellowRed - 5
+%Yellow - 4
+%Red - 3
+%Green - 2
+%Brown - 1
 %SIZES
-%1 - OvalShape
+%3 - Oval
 %2 - PearShape
+%1 - SmallPear
 
-x1=[1 2 3 2 4]; %Colour vector [1 2 3 2 4]
-x2=[1 1 1 2 2]; %Size vector [1 1 1 2 2]
-Target=[1,1,1,0,0]; %Target - 1:Apple, 0:Pear
-AppleCount = 3; %Apple count in training data
+x1=[5 4 3 3 3 2 1]; %Colour vector [1 2 3 2 4]
+x2=[3 3 3 3 3 2 1]; %Size vector [1 1 1 2 2]
+Target=[1,1,1,1,0,0]; %Target - 1:Apple, 0:Pear
+AppleCount = 4; %Apple count in training data
 PearCount = 2; %Pear count in training data
-
-xb1=[hsv_value_A4 hsv_value_A6 hsv_value_A7 hsv_value_A8 hsv_value_A9 hsv_value_P3 hsv_value_P4];
-xb2=[metric_A4 metric_A6 metric_A7 metric_A8 metric_A9 metric_P3 metric_P4];
+n = 6; %Training samples
+xb1=[hsv_value_A1 hsv_value_A2 hsv_value_A3 hsv_value_A7 hsv_value_A9 hsv_value_P2 hsv_value_P4];
+xb2=[metric_A1 metric_A2 metric_A3 metric_A7 metric_A9 metric_P2 metric_P4];
 
 %x1x2 Apple
 x1a1 = 0;
-for ind = 1:5
+for ind = 1:n
     if Target(ind) == 1 && x1(ind) == x1(1)
         x1a1 = x1a1+1;
     end
 end
 x2a1 = 0;
-for ind = 1:5
+for ind = 1:n
     if Target(ind) == 1 && x2(ind) == x2(1)
         x2a1 = x2a1+1;
     end
 end
 %x1x2 Pear
 x1p1 = 0;
-for ind = 1:5
+for ind = 1:n
     if Target(ind) == 0 && x1(ind) == x1(1)
         x1p1 = x1p1+1;
     end
 end
 x2p1 = 0;
-for ind = 1:5
+for ind = 1:n
     if Target(ind) == 0 && x2(ind) == x2(1)
         x2p1 = x2p1+1;
     end
@@ -339,26 +345,26 @@ end
 %--------------------------------------------------------------------------
 %x1x2 Apple
 x1a2 = 0;
-for ind = 1:5
+for ind = 1:n
     if Target(ind) == 1 && x1(ind) == x1(2)
         x1a2 = x1a2+1;
     end
 end
 x2a2 = 0;
-for ind = 1:5
+for ind = 1:n
     if Target(ind) == 1 && x2(ind) == x2(2)
         x2a2 = x2a2+1;
     end
 end
 %x1x2 Pear
 x1p2 = 0;
-for ind = 1:5
+for ind = 1:n
     if Target(ind) == 0 && x1(ind) == x1(2)
         x1p2 = x1p2+1;
     end
 end
 x2p2 = 0;
-for ind = 1:5
+for ind = 1:n
     if Target(ind) == 0 && x2(ind) == x2(2)
         x2p2 = x2p2+1;
     end
@@ -379,26 +385,26 @@ end
 %--------------------------------------------------------------------------
 %x1x2 Apple
 x1a3 = 0;
-for ind = 1:5
+for ind = 1:n
     if Target(ind) == 1 && x1(ind) == x1(3)
         x1a3 = x1a3+1;
     end
 end
 x2a3 = 0;
-for ind = 1:5
+for ind = 1:n
     if Target(ind) == 1 && x2(ind) == x2(3)
         x2a3 = x2a3+1;
     end
 end
 %x1x2 Pear
 x1p3 = 0;
-for ind = 1:5
+for ind = 1:n
     if Target(ind) == 0 && x1(ind) == x1(3)
         x1p3 = x1p3+1;
     end
 end
 x2p3 = 0;
-for ind = 1:5
+for ind = 1:n
     if Target(ind) == 0 && x2(ind) == x2(3)
         x2p3 = x2p3+1;
     end
@@ -414,26 +420,26 @@ end
 %--------------------------------------------------------------------------
 %x1x2 Apple
 x1a4 = 0;
-for ind = 1:5
+for ind = 1:n
     if Target(ind) == 1 && x1(ind) == x1(4)
         x1a4 = x1a4+1;
     end
 end
 x2a4 = 0;
-for ind = 1:5
+for ind = 1:n
     if Target(ind) == 1 && x2(ind) == x2(4)
         x2a4 = x2a4+1;
     end
 end
 %x1x2 Pear
 x1p4 = 0;
-for ind = 1:5
+for ind = 1:n
     if Target(ind) == 0 && x1(ind) == x1(4)
         x1p4 = x1p4+1;
     end
 end
 x2p4 = 0;
-for ind = 1:5
+for ind = 1:n
     if Target(ind) == 0 && x2(ind) == x2(4)
         x2p4 = x2p4+1;
     end
@@ -451,26 +457,26 @@ end
 %--------------------------------------------------------------------------
 %x1x2 Apple
 x1a5 = 0;
-for ind = 1:5
+for ind = 1:n
     if Target(ind) == 1 && x1(ind) == x1(5)
         x1a5 = x1a5+1;
     end
 end
 x2a5 = 0;
-for ind = 1:5
+for ind = 1:n
     if Target(ind) == 1 && x2(ind) == x2(5)
         x2a5 = x2a5+1;
     end
 end
 %x1x2 Pear
 x1p5 = 0;
-for ind = 1:5
+for ind = 1:n
     if Target(ind) == 0 && x1(ind) == x1(5)
         x1p5 = x1p5+1;
     end
 end
 x2p5 = 0;
-for ind = 1:5
+for ind = 1:n
     if Target(ind) == 0 && x2(ind) == x2(5)
         x2p5 = x2p5+1;
     end
@@ -483,6 +489,79 @@ if v5Apple > v5Pear
     y5 = 1
 else
     y5 = 0
+end
+
+%--------------------------------------------------------------------------
+%x1x2 Apple
+x1a6 = 0;
+for ind = 1:n
+    if Target(ind) == 1 && x1(ind) == x1(6)
+        x1a6 = x1a6+1;
+    end
+end
+x2a6 = 0;
+for ind = 1:n
+    if Target(ind) == 1 && x2(ind) == x2(6)
+        x2a6 = x2a6+1;
+    end
+end
+%x1x2 Pear
+x1p6 = 0;
+for ind = 1:n
+    if Target(ind) == 0 && x1(ind) == x1(6)
+        x1p6 = x1p6+1;
+    end
+end
+x2p6 = 0;
+for ind = 1:n
+    if Target(ind) == 0 && x2(ind) == x2(6)
+        x2p6 = x2p6+1;
+    end
+end
+
+v6Apple = (x1a6/AppleCount)*(x2a6/AppleCount);
+v6Pear = (x1p6/PearCount)*(x2p6/PearCount);
+
+if v6Apple > v6Pear
+    y6 = 1
+else
+    y6 = 0
+end
+%--------------------------------------------------------------------------
+%x1x2 Apple
+x1a7 = 0;
+for ind = 1:n
+    if Target(ind) == 1 && x1(ind) == x1(7)
+        x1a7 = x1a7+1;
+    end
+end
+x2a7 = 0;
+for ind = 1:n
+    if Target(ind) == 1 && x2(ind) == x2(7)
+        x2a6 = x2a7+1;
+    end
+end
+%x1x2 Pear
+x1p7 = 0;
+for ind = 1:n
+    if Target(ind) == 0 && x1(ind) == x1(7)
+        x1p7 = x1p7+1;
+    end
+end
+x2p7 = 0;
+for ind = 1:n
+    if Target(ind) == 0 && x2(ind) == x2(7)
+        x2p7 = x2p7+1;
+    end
+end
+
+v7Apple = (x1a7/AppleCount)*(x2a7/AppleCount);
+v7Pear = (x1p7/PearCount)*(x2p7/PearCount);
+
+if v7Apple > v7Pear
+    y7 = 1
+else
+    y7 = 0
 end
 
 
