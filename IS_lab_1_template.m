@@ -307,24 +307,24 @@ xb1=[hsv_value_A1 hsv_value_A2 hsv_value_A3 hsv_value_P1 hsv_value_P4];
 xb2=[metric_A1 metric_A2 metric_A3 metric_P1 metric_P4];
 
 for ind = 1:n
-    if Target(ind) == 1 && x1(ind) == x1(1)
+    if Target(ind) == 1 && x1(ind) == x1(1) % count how many times Target was apple with current x1 value
         x1a1 = x1a1+1;
     end
-    if Target(ind) == 1 && x2(ind) == x2(1)
+    if Target(ind) == 1 && x2(ind) == x2(1) % count how many times Target was apple with current x2 value
         x2a1 = x2a1+1;
     end
-    if Target(ind) == 0 && x1(ind) == x1(1)
+    if Target(ind) == 0 && x1(ind) == x1(1) % count how many times Target was pear  with current x1 value
         x1p1 = x1p1+1;
     end
-    if Target(ind) == 0 && x2(ind) == x2(1)
+    if Target(ind) == 0 && x2(ind) == x2(1) % count how many times Target was pear  with current x2 value
         x2p1 = x2p1+1;
     end
 end
 
-v1Apple = (x1a1/AppleCount)*(x2a1/AppleCount);
-v1Pear = (x1p1/PearCount)*(x2p1/PearCount);
+v1Apple = (x1a1/AppleCount)*(x2a1/AppleCount); % counting odds of apple
+v1Pear = (x1p1/PearCount)*(x2p1/PearCount); % counting odds of pear
 
-if v1Apple > v1Pear
+if v1Apple > v1Pear % comparing which one is more likely
     y1 = 1;
 else
     y1 = 0;
