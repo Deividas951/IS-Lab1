@@ -431,31 +431,5 @@ end
 %xt1=[metric_A4 metric_A5 hsv_value_A6 hsv_value_A7 hsv_value_A8 hsv_value_A9 hsv_value_P2 hsv_value_P3];
 %xt2=[metric_A4 metric_A5 metric_A6 metric_A7 metric_A8 metric_A9 metric_P2 metric_P3];
 %Testing target should be vector: [1 1 1 1 1 1 0 0]
-nt = 8;
-xt1a1 = 0;
-xt2a1 = 0;
-for ind = 1:nt
-    if Target(ind) == 1 && xt1(ind) == xt1(1)
-        xt1a1 = xt1a1+1;
-    end
-    if Target(ind) == 1 && xt2(ind) == xt2(1)
-        xt2a1 = xt2a1+1;
-    end
-    if Target(ind) == 0 && xt1(ind) == xt1(1)
-        xt1p1 = xt1p1+1;
-    end
-    if Target(ind) == 0 && xt2(ind) == xt2(1)
-        xt2p1 = xt2p1+1;
-    end
-end
-
-vt1Apple = (xt1a1/AppleCount)*(xt2a1/AppleCount);
-vt1Pear = (xt1p1/PearCount)*(xt2p1/PearCount);
-
-if vt1Apple > vt1Pear
-    yt1 = 1;
-else
-    yt1 = 0;
-end
 
 
