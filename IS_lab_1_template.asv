@@ -389,7 +389,7 @@ for ind = 1:n
         x1p4 = x1p4+1;
     end
     if Target(ind) == 0 && x2(ind) == x2(4)
-        x2p4 = x2p4+1;
+        x2p2 = x2p2+1;
     end
 end
 
@@ -401,20 +401,7 @@ if v4Apple > v4Pear
 else
     y4 = 0;
 end
-for ind = 1:n
-    if Target(ind) == 1 && x1(ind) == x1(5)
-        x1a5 = x1a5+1;
-    end
-    if Target(ind) == 1 && x2(ind) == x2(5)
-        x2a5 = x2a5+1;
-    end
-    if Target(ind) == 0 && x1(ind) == x1(5)
-        x1p5 = x1p5+1;
-    end
-    if Target(ind) == 0 && x2(ind) == x2(5)
-        x2p5 = x2p5+1;
-    end
-end
+
 
 v5Apple = (x1a5/AppleCount)*(x2a5/AppleCount);
 v5Pear = (x1p5/PearCount)*(x2p5/PearCount);
