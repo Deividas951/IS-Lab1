@@ -68,8 +68,9 @@ x1=[hsv_value_A1 hsv_value_A2 hsv_value_A3 hsv_value_P1 hsv_value_P2];
 x2=[metric_A1 metric_A2 metric_A3 metric_P1 metric_P2];
 % estimated features are stored in matrix P:
 P=[x1;x2];
-xt1=[metric_A4 metric_A5 hsv_value_A6 hsv_value_A7 hsv_value_A8 hsv_value_A9 hsv_value_P3 hsv_value_P4];
-xt2=[metric_A4 metric_A5 metric_A6 metric_A7 metric_A8 metric_A9 metric_P3 metric_P4];
+% Testing data for Bayes classifer
+xt1=[metric_A4 metric_A5 hsv_value_A6 hsv_value_A7 hsv_value_A8 hsv_value_A9 hsv_value_P2 hsv_value_P3];
+xt2=[metric_A4 metric_A5 metric_A6 metric_A7 metric_A8 metric_A9 metric_P2 metric_P3];
 
 %Desired output vector
 T=[1;1;1;-1;-1]; % <- ČIA ANKSČIAU BUVO KLAIDA!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -307,24 +308,24 @@ xb1=[hsv_value_A1 hsv_value_A2 hsv_value_A3 hsv_value_P1 hsv_value_P4];
 xb2=[metric_A1 metric_A2 metric_A3 metric_P1 metric_P4];
 
 for ind = 1:n
-    if Target(ind) == 1 && x1(ind) == x1(1)
+    if Target(ind) == 1 && x1(ind) == x1(1) % count how many times Target was apple with current x1 value
         x1a1 = x1a1+1;
     end
-    if Target(ind) == 1 && x2(ind) == x2(1)
+    if Target(ind) == 1 && x2(ind) == x2(1) % count how many times Target was apple with current x2 value
         x2a1 = x2a1+1;
     end
-    if Target(ind) == 0 && x1(ind) == x1(1)
+    if Target(ind) == 0 && x1(ind) == x1(1) % count how many times Target was pear  with current x1 value
         x1p1 = x1p1+1;
     end
-    if Target(ind) == 0 && x2(ind) == x2(1)
+    if Target(ind) == 0 && x2(ind) == x2(1) % count how many times Target was pear  with current x2 value
         x2p1 = x2p1+1;
     end
 end
 
-v1Apple = (x1a1/AppleCount)*(x2a1/AppleCount);
-v1Pear = (x1p1/PearCount)*(x2p1/PearCount);
+v1Apple = (x1a1/AppleCount)*(x2a1/AppleCount); % counting odds of apple
+v1Pear = (x1p1/PearCount)*(x2p1/PearCount); % counting odds of pear
 
-if v1Apple > v1Pear
+if v1Apple > v1Pear % comparing which one is more likely
     y1 = 1;
 else
     y1 = 0;
@@ -389,7 +390,7 @@ for ind = 1:n
         x1p4 = x1p4+1;
     end
     if Target(ind) == 0 && x2(ind) == x2(4)
-        x2p2 = x2p2+1;
+        x2p4 = x2p4+1;
     end
 end
 
@@ -402,6 +403,20 @@ else
     y4 = 0;
 end
 
+for ind = 1:n
+    if Target(ind) == 1 && x1(ind) == x1(5)
+        x1a5 = x1a5+1;
+    end
+    if Target(ind) == 1 && x2(ind) == x2(5)
+        x2a5 = x2a5+1;
+    end
+    if Target(ind) == 0 && x1(ind) == x1(5)
+        x1p5 = x1p5+1;
+    end
+    if Target(ind) == 0 && x2(ind) == x2(5)
+        x2p5 = x2p5+1;
+    end
+end
 
 v5Apple = (x1a5/AppleCount)*(x2a5/AppleCount);
 v5Pear = (x1p5/PearCount)*(x2p5/PearCount);
@@ -410,6 +425,38 @@ if v5Apple > v5Pear
     y5 = 1;
 else
     y5 = 0;
+end
+
+%Testing
+%xt1=[metric_A4 metric_A5 hsv_value_A6 hsv_value_A7 hsv_value_A8 hsv_value_A9 hsv_value_P2 hsv_value_P3];
+%xt2=[metric_A4 metric_A5 metric_A6 metric_A7 metric_A8 metric_A9 metric_P2 metric_P3];
+%Testing target should be vector: [1 1 1 1 1 1 0 0]
+T_Target = [1 1 1 1 1 1 0 0];
+nt = 8;
+xt1a1 = 0;
+xt2a1 = 0;
+for ind = 1:nt
+    if T_Target(ind) == 1 && xt1(ind) == xt1(1)
+        xt1a1 = xt1a1+1;
+    end
+    if Target(ind) == 1 && xt2(ind) == xt2(1)
+        xt2a1 = xt2a1+1;
+    end
+    if Target(ind) == 0 && xt1(ind) == xt1(1)
+        xt1p1 = xt1p1+1;
+    end
+    if Target(ind) == 0 && xt2(ind) == xt2(1)
+        xt2p1 = xt2p1+1;
+    end
+end
+
+vt1Apple = (xt1a1/AppleCount)*(xt2a1/AppleCount);
+vt1Pear = (xt1p1/PearCount)*(xt2p1/PearCount);
+
+if vt1Apple > vt1Pear
+    yt1 = 1;
+else
+    yt1 = 0;
 end
 
 
