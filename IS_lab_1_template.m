@@ -306,30 +306,38 @@ PearCount = 2; %Pear count in training data
 n = 5; %Training samples
 xb1=[hsv_value_A1 hsv_value_A2 hsv_value_A3 hsv_value_P1 hsv_value_P4];
 xb2=[metric_A1 metric_A2 metric_A3 metric_P1 metric_P4];
-
+x1a1 = 0;
+x1p1 = 0;
+x2a1 = 0;
+x2p1 = 0;
 for ind = 1:n
     if Target(ind) == 1 && x1(ind) == x1(1) % count how many times Target was apple with current x1 value
-        x1a1 = x1a1+1;
+        x1a1 = x1a1+1
     end
     if Target(ind) == 1 && x2(ind) == x2(1) % count how many times Target was apple with current x2 value
-        x2a1 = x2a1+1;
+        x2a1 = x2a1+1
     end
     if Target(ind) == 0 && x1(ind) == x1(1) % count how many times Target was pear  with current x1 value
-        x1p1 = x1p1+1;
+        x1p1 = x1p1+1
     end
     if Target(ind) == 0 && x2(ind) == x2(1) % count how many times Target was pear  with current x2 value
-        x2p1 = x2p1+1;
+        x2p1 = x2p1+1
     end
 end
 
-v1Apple = (x1a1/AppleCount)*(x2a1/AppleCount); % counting odds of apple
-v1Pear = (x1p1/PearCount)*(x2p1/PearCount); % counting odds of pear
+v1Apple = (x1a1/AppleCount)*(x2a1/AppleCount) % counting odds of apple
+v1Pear = (x1p1/PearCount)*(x2p1/PearCount) % counting odds of pear
 
 if v1Apple > v1Pear % comparing which one is more likely
     y1 = 1;
 else
     y1 = 0;
 end
+
+x1a2 = 0;
+x1p2 = 0;
+x2a2 = 0;
+x2p2 = 0;
 
 for ind = 1:n
     if Target(ind) == 1 && x1(ind) == x1(2)
@@ -355,6 +363,11 @@ else
     y2 = 0;
 end
 
+x1a3 = 0;
+x1p3 = 0;
+x2a3 = 0;
+x2p3 = 0;
+
 for ind = 1:n
     if Target(ind) == 1 && x1(ind) == x1(3)
         x1a3 = x1a3+1;
@@ -379,6 +392,11 @@ else
     y3 = 0;
 end
 
+x1a4 = 0;
+x1p4 = 0;
+x2a4 = 0;
+x2p4 = 0;
+
 for ind = 1:n
     if Target(ind) == 1 && x1(ind) == x1(4)
         x1a4 = x1a4+1;
@@ -402,6 +420,11 @@ if v4Apple > v4Pear
 else
     y4 = 0;
 end
+
+x1a5 = 0;
+x1p5 = 0;
+x2a5 = 0;
+x2p5 = 0;
 
 for ind = 1:n
     if Target(ind) == 1 && x1(ind) == x1(5)
@@ -431,5 +454,39 @@ end
 %xt1=[metric_A4 metric_A5 hsv_value_A6 hsv_value_A7 hsv_value_A8 hsv_value_A9 hsv_value_P2 hsv_value_P3];
 %xt2=[metric_A4 metric_A5 metric_A6 metric_A7 metric_A8 metric_A9 metric_P2 metric_P3];
 %Testing target should be vector: [1 1 1 1 1 1 0 0]
+
+T = [1 1 1 1 1 1 0 0];
+nt = 8;
+
+
+xt1a1 = 0;
+xt1p1 = 0;
+xt2a1 = 0;
+xt2p1 = 0;
+
+for ind = 1:5
+    if Target(ind) == 1 && xt1(1) == x1(ind)
+        xt1a1 = xt1a1+1;
+    end
+    if Target(ind) == 1 && xt2(1) == x2(ind)
+        xt2a1 = xt2a1+1;
+    end
+    if Target(ind) == 0 && xt1(1) == x1(ind)
+        xt1p1 = xt1p1+1;
+    end
+    if Target(ind) == 0 && xt1(1) == x2(ind)
+        xt1p1 = xt1p1+1;
+    end
+
+end
+    
+v5Apple = (x1a5/AppleCount)*(x2a5/AppleCount);
+v5Pear = (x1p5/PearCount)*(x2p5/PearCount);
+
+if v5Apple > v5Pear
+    yt5 = 1;
+else
+    yt5 = 0;
+end
 
 
