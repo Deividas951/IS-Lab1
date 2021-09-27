@@ -68,10 +68,6 @@ x1=[hsv_value_A1 hsv_value_A2 hsv_value_A3 hsv_value_P1 hsv_value_P2];
 x2=[metric_A1 metric_A2 metric_A3 metric_P1 metric_P2];
 % estimated features are stored in matrix P:
 P=[x1;x2];
-% Testing data for Bayes classifer
-xt1=[metric_A4 metric_A5 hsv_value_A6 hsv_value_A7 hsv_value_A8 hsv_value_A9 hsv_value_P2 hsv_value_P3];
-xt2=[metric_A4 metric_A5 metric_A6 metric_A7 metric_A8 metric_A9 metric_P2 metric_P3];
-
 %Desired output vector
 T=[1;1;1;-1;-1]; % <- ČIA ANKSČIAU BUVO KLAIDA!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -454,7 +450,9 @@ end
 %xt1=[metric_A4 metric_A5 hsv_value_A6 hsv_value_A7 hsv_value_A8 hsv_value_A9 hsv_value_P2 hsv_value_P3];
 %xt2=[metric_A4 metric_A5 metric_A6 metric_A7 metric_A8 metric_A9 metric_P2 metric_P3];
 %Testing target should be vector: [1 1 1 1 1 1 0 0]
-
+%Testing data
+xt1 = [3 3 3 3 3 3 2 1];
+xt2 = [3 3 3 3 3 3 2 2];
 T = [1 1 1 1 1 1 0 0];
 nt = 8;
 
@@ -480,13 +478,222 @@ for ind = 1:5
 
 end
     
-v5Apple = (x1a5/AppleCount)*(x2a5/AppleCount);
-v5Pear = (x1p5/PearCount)*(x2p5/PearCount);
+vt1Apple = (xt1a1/AppleCount)*(xt2a1/AppleCount);
+vt1Pear = (xt1p1/PearCount)*(xt2p1/PearCount);
 
-if v5Apple > v5Pear
+if vt1Apple > vt1Pear
+    yt1 = 1;
+else
+    yt1 = 0;
+end
+
+xt1a2 = 0;
+xt1p2 = 0;
+xt2a2 = 0;
+xt2p2 = 0;
+
+for ind = 1:5
+    if Target(ind) == 1 && xt1(2) == x1(ind)
+        xt1a2 = xt1a2+1;
+    end
+    if Target(ind) == 1 && xt2(2) == x2(ind)
+        xt2a2 = xt2a2+1;
+    end
+    if Target(ind) == 0 && xt1(2) == x1(ind)
+        xt1p2 = xt1p2+1;
+    end
+    if Target(ind) == 0 && xt1(2) == x2(ind)
+        xt1p2 = xt1p2+1;
+    end
+
+end
+    
+vt2Apple = (xt1a2/AppleCount)*(xt2a2/AppleCount);
+vt2Pear = (xt1p2/PearCount)*(xt2p2/PearCount);
+
+if vt2Apple > vt2Pear
+    yt2 = 1;
+else
+    yt2 = 0;
+end
+
+xt1a3 = 0;
+xt1p3 = 0;
+xt2a3 = 0;
+xt2p3 = 0;
+
+for ind = 1:5
+    if Target(ind) == 1 && xt1(3) == x1(ind)
+        xt1a3 = xt1a3+1;
+    end
+    if Target(ind) == 1 && xt2(3) == x2(ind)
+        xt2a3 = xt2a3+1;
+    end
+    if Target(ind) == 0 && xt1(3) == x1(ind)
+        xt1p3 = xt1p3+1;
+    end
+    if Target(ind) == 0 && xt1(3) == x2(ind)
+        xt1p3 = xt1p3+1;
+    end
+
+end
+    
+vt3Apple = (xt1a3/AppleCount)*(xt2a3/AppleCount);
+vt3Pear = (xt1p3/PearCount)*(xt2p3/PearCount);
+
+if vt3Apple > vt3Pear
+    yt3 = 1;
+else
+    yt3 = 0;
+end
+
+xt1a4 = 0;
+xt1p4 = 0;
+xt2a4 = 0;
+xt2p4 = 0;
+
+for ind = 1:5
+    if Target(ind) == 1 && xt1(4) == x1(ind)
+        xt1a4 = xt1a4+1;
+    end
+    if Target(ind) == 1 && xt2(4) == x2(ind)
+        xt2a4 = xt2a4+1;
+    end
+    if Target(ind) == 0 && xt1(4) == x1(ind)
+        xt1p4 = xt1p4+1;
+    end
+    if Target(ind) == 0 && xt1(4) == x2(ind)
+        xt1p4 = xt1p4+1;
+    end
+
+end
+    
+vt4Apple = (xt1a4/AppleCount)*(xt2a4/AppleCount);
+vt4Pear = (xt1p4/PearCount)*(xt2p4/PearCount);
+
+if vt4Apple > vt4Pear
+    yt4 = 1;
+else
+    yt4 = 0;
+end
+
+xt1a5 = 0;
+xt1p5 = 0;
+xt2a5 = 0;
+xt2p5 = 0;
+
+for ind = 1:5
+    if Target(ind) == 1 && xt1(5) == x1(ind)
+        xt1a5 = xt1a5+1;
+    end
+    if Target(ind) == 1 && xt2(5) == x2(ind)
+        xt2a5 = xt2a5+1;
+    end
+    if Target(ind) == 0 && xt1(5) == x1(ind)
+        xt1p5 = xt1p5+1;
+    end
+    if Target(ind) == 0 && xt1(5) == x2(ind)
+        xt1p5 = xt1p5+1;
+    end
+
+end
+    
+vt5Apple = (xt1a5/AppleCount)*(xt2a5/AppleCount);
+vt5Pear = (xt1p5/PearCount)*(xt2p5/PearCount);
+
+if vt5Apple > vt5Pear
     yt5 = 1;
 else
     yt5 = 0;
 end
 
 
+xt1a6 = 0;
+xt1p6 = 0;
+xt2a6 = 0;
+xt2p6 = 0;
+
+for ind = 1:5
+    if Target(ind) == 1 && xt1(6) == x1(ind)
+        xt1a6 = xt1a6+1;
+    end
+    if Target(ind) == 1 && xt2(6) == x2(ind)
+        xt2a6 = xt2a6+1;
+    end
+    if Target(ind) == 0 && xt1(6) == x1(ind)
+        xt1p6 = xt1p6+1;
+    end
+    if Target(ind) == 0 && xt1(6) == x2(ind)
+        xt1p6 = xt1p6+1;
+    end
+
+end
+    
+vt6Apple = (xt1a6/AppleCount)*(xt2a6/AppleCount);
+vt6Pear = (xt1p6/PearCount)*(xt2p6/PearCount);
+
+if vt6Apple > vt6Pear
+    yt6 = 1;
+else
+    yt6 = 0;
+end
+
+xt1a7 = 0;
+xt1p7 = 0;
+xt2a7 = 0;
+xt2p7 = 0;
+
+for ind = 1:5
+    if Target(ind) == 1 && xt1(7) == x1(ind)
+        xt1a7 = xt1a7+1;
+    end
+    if Target(ind) == 1 && xt2(7) == x2(ind)
+        xt2a7 = xt2a7+1;
+    end
+    if Target(ind) == 0 && xt1(7) == x1(ind)
+        xt1p7 = xt1p7+1;
+    end
+    if Target(ind) == 0 && xt1(7) == x2(ind)
+        xt1p7 = xt1p7+1;
+    end
+
+end
+    
+vt7Apple = (xt1a7/AppleCount)*(xt2a7/AppleCount);
+vt7Pear = (xt1p7/PearCount)*(xt2p7/PearCount);
+
+if vt7Apple > vt7Pear
+    yt7 = 1;
+else
+    yt7 = 0;
+end
+
+xt1a8 = 0;
+xt1p8 = 0;
+xt2a8 = 0;
+xt2p8 = 0;
+
+for ind = 1:5
+    if Target(ind) == 1 && xt1(8) == x1(ind)
+        xt1a8 = xt1a8+1;
+    end
+    if Target(ind) == 1 && xt2(8) == x2(ind)
+        xt2a8 = xt2a8+1;
+    end
+    if Target(ind) == 0 && xt1(8) == x1(ind)
+        xt1p8 = xt1p8+1;
+    end
+    if Target(ind) == 0 && xt1(8) == x2(ind)
+        xt1p8 = xt1p8+1;
+    end
+
+end
+    
+vt8Apple = (xt1a8/AppleCount)*(xt2a8/AppleCount);
+vt8Pear = (xt1p8/PearCount)*(xt2p8/PearCount);
+
+if vt8Apple > vt8Pear
+    yt8 = 1;
+else
+    yt8 = 0;
+end
